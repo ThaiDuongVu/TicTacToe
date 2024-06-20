@@ -30,6 +30,10 @@ namespace TicTacToe
         private const string Player1Symbol = "X";
         private const string Player2Symbol = "O";
 
+        // Colors of each player
+        private readonly SolidColorBrush Player1Color = Brushes.Red;
+        private readonly SolidColorBrush Player2Color = Brushes.Blue;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -48,14 +52,20 @@ namespace TicTacToe
             int x = int.Parse(tag[0].ToString());
             int y = int.Parse(tag[1].ToString());
 
-            // If cell already clicked then return
-            if (_grid[x - 1, y - 1] != 0) return;
+            // If cell already clicked
+            if (_grid[x - 1, y - 1] != 0)
+            {
+                ShowErrorBox("Invalid cell placement!", "Error");
+                return;
+            }
 
             // Update grid array
             _grid[x - 1, y - 1] = _currentPlayerTurn;
 
-            // Update button & switch player turn
+            // Update button appearance
             button.Content = _currentPlayerTurn == 1 ? Player1Symbol : Player2Symbol;
+            button.Foreground = _currentPlayerTurn == 1 ? Player1Color : Player2Color;
+
             SwitchTurn();
         }
 
@@ -65,6 +75,19 @@ namespace TicTacToe
         private void SwitchTurn()
         {
             _currentPlayerTurn = (_currentPlayerTurn == 1) ? 2 : 1;
+            //Cursor = _currentPlayerTurn == 1 ? Cursors.Cross : Cursors.Wait;
+        }
+
+        /// <summary>
+        /// Display a dialog with an error message
+        /// </summary>
+        /// <param name="text">Error message to show</param>
+        /// <param name="caption">Dialog caption</param>
+        private static void ShowErrorBox(string text, string caption)
+        {
+            var button = MessageBoxButton.OK;
+            var icon = MessageBoxImage.Error;
+            MessageBox.Show(text, caption, button, icon, MessageBoxResult.Yes);
         }
     }
 }
