@@ -88,6 +88,8 @@ namespace TicTacToe
         private int CheckWinner()
         {
             var isGridFilled = true;
+            var checkStartIndex = GridSize - 3;
+            var checkEndIndex = GridSize - 1;
             for (int x = 0; x < _grid.GetLength(0); x++)
             {
                 for (int y = 0; y < _grid.GetLength(1); y++)
@@ -100,15 +102,25 @@ namespace TicTacToe
                     }
 
                     // Check horizontal match-3
-                    if (x <= GridSize - 3)
+                    if (x <= checkStartIndex)
                     {
                         if (cell == _grid[x + 1, y] && cell == _grid[x + 2, y]) return cell;
                     }
 
                     // Check vertical match-3
-                    if (y <= GridSize - 3)
+                    if (y <= checkStartIndex)
                     {
                         if (cell == _grid[x, y + 1] && cell == _grid[x, y + 2]) return cell;
+                    }
+
+                    // Check diagonal match
+                    if (x <= checkStartIndex && y <= checkStartIndex)
+                    {
+                        if (cell == _grid[x + 1, y + 1] && cell == _grid[x + 2, y + 2]) return cell;
+                    }
+                    if (x <= checkStartIndex && y >= checkEndIndex)
+                    {
+                        if (cell == _grid[x + 1, y - 1] && cell == _grid[x + 2, y - 2]) return cell;
                     }
                 }
             }
