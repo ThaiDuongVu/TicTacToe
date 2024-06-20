@@ -87,7 +87,36 @@ namespace TicTacToe
         /// <returns>0 if no winner yet, 1 if player1 wins, 2 if player2 wins, 3 if it's a tie</returns>
         private int CheckWinner()
         {
-            return 0;
+            var isGridFilled = true;
+            for (int x = 0; x < _grid.GetLength(0); x++)
+            {
+                for (int y = 0; y < _grid.GetLength(1); y++)
+                {
+                    var cell = _grid[x, y];
+                    if (cell == 0)
+                    {
+                        isGridFilled = false;
+                        continue;
+                    }
+
+                    // Check horizontal match-3
+                    if (x <= GridSize - 3)
+                    {
+                        if (cell == _grid[x + 1, y] && cell == _grid[x + 2, y]) return cell;
+                    }
+
+                    // Check vertical match-3
+                    if (y <= GridSize - 3)
+                    {
+                        if (cell == _grid[x, y + 1] && cell == _grid[x, y + 2]) return cell;
+                    }
+                }
+            }
+
+            // If can't find a winner and
+            //      grid is filled: tie
+            //      grid is not filled: game is still going
+            return isGridFilled ? 3 : 0;
         }
 
         /// <summary>
