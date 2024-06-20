@@ -5,8 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TicTacToe"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Tic Tac Toe" Height="360" Width="360">
     <Grid>
+        <Button x:Name="button1x1" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Height="120" Width="120" FontSize="72" Background="White" Click="OnGridButtonClicked" Tag="11" FontWeight="Bold"/>
+        <Button x:Name="button1x2" Content="" HorizontalAlignment="Center" VerticalAlignment="Top" Height="120" Width="120" FontSize="72" Background="White" Click="OnGridButtonClicked" Tag="12" FontWeight="Bold"/>
+        <Button x:Name="button1x3" Content="" HorizontalAlignment="Right" VerticalAlignment="Top" Height="120" Width="120" FontSize="72" Background="White" Click="OnGridButtonClicked" Tag="13" FontWeight="Bold"/>
 
+        <Button x:Name="button2x1" Content="" HorizontalAlignment="Left" VerticalAlignment="Center" Height="120" Width="120" FontSize="72" Background="White" Click="OnGridButtonClicked" Tag="21" FontWeight="Bold"/>
+        <Button x:Name="button2x2" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Height="120" Width="120" FontSize="72" Background="White" Click="OnGridButtonClicked" Tag="22" FontWeight="Bold"/>
+        <Button x:Name="button2x3" Content="" HorizontalAlignment="Right" VerticalAlignment="Center" Height="120" Width="120" FontSize="72" Background="White" Click="OnGridButtonClicked" Tag="23" FontWeight="Bold"/>
+
+        <Button x:Name="button3x1" Content="" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="120" Width="120" FontSize="72" Background="White" Click="OnGridButtonClicked" Tag="31" FontWeight="Bold"/>
+        <Button x:Name="button3x2" Content="" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="120" Width="120" FontSize="72" Background="White" Click="OnGridButtonClicked" Tag="32" FontWeight="Bold"/>
+        <Button x:Name="button3x3" Content="" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="120" Width="120" FontSize="72" Background="White" Click="OnGridButtonClicked" Tag="33" FontWeight="Bold"/>
     </Grid>
 </Window>
