@@ -41,7 +41,7 @@ namespace TicTacToe
         }
 
         /// <summary>
-        /// Handle player cell placement when a button on the grid is clicked
+        /// Handle player cell placement when a grid button is clicked
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -77,8 +77,36 @@ namespace TicTacToe
             {
                 _isGameEnded = true;
                 UpdateWinnerLabel(winner);
-                // TODO: Add button to restart game
+                restartButton.Visibility = Visibility.Visible;
             }
+        }
+
+        /// <summary>
+        /// Handle game restart when the restart button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnRestartButtonClicked(object sender, RoutedEventArgs e)
+        {
+            // Reset game state
+            _grid = new int[GridSize, GridSize];
+            _currentPlayerTurn = 1;
+            _isGameEnded = false;
+
+            // Reset cell buttons
+            button1x1.Content = "";
+            button1x2.Content = "";
+            button1x3.Content = "";
+            button2x1.Content = "";
+            button2x2.Content = "";
+            button2x3.Content = "";
+            button3x1.Content = "";
+            button3x2.Content = "";
+            button3x3.Content = "";
+
+            // Reset end game components
+            winnerLabel.Visibility = Visibility.Hidden;
+            restartButton.Visibility = Visibility.Hidden;
         }
 
         /// <summary>

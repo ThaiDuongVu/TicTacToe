@@ -20,5 +20,6 @@
         <Button x:Name="button3x3" Content="" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="120" Width="120" FontSize="72" Background="White" Click="OnGridButtonClicked" Tag="33" FontWeight="Bold"/>
 
         <Label x:Name="winnerLabel" Content="Winner" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Background="White" Margin="0,-72,0,0" Visibility="Hidden"/>
+        <Button x:Name="restartButton" Content="Restart" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Click="OnRestartButtonClicked" Visibility="Hidden"/>
     </Grid>
 </Window>
