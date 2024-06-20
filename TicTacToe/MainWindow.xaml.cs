@@ -24,6 +24,12 @@ namespace TicTacToe
         // 2: Player 2 (O) occupied
         private int[,] _grid = new int[GridSize, GridSize];
 
+        private int _currentPlayerTurn = 1;
+
+        // Symbols of each player
+        private const string Player1Symbol = "X";
+        private const string Player2Symbol = "O";
+
         public MainWindow()
         {
             InitializeComponent();
@@ -42,7 +48,23 @@ namespace TicTacToe
             int x = int.Parse(tag[0].ToString());
             int y = int.Parse(tag[1].ToString());
 
-            button.Content = "X";
+            // If cell already clicked then return
+            if (_grid[x - 1, y - 1] != 0) return;
+
+            // Update grid array
+            _grid[x - 1, y - 1] = _currentPlayerTurn;
+
+            // Update button & switch player turn
+            button.Content = _currentPlayerTurn == 1 ? Player1Symbol : Player2Symbol;
+            SwitchTurn();
+        }
+
+        /// <summary>
+        /// Switch player turn
+        /// </summary>
+        private void SwitchTurn()
+        {
+            _currentPlayerTurn = (_currentPlayerTurn == 1) ? 2 : 1;
         }
     }
 }
