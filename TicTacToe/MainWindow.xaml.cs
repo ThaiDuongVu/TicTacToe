@@ -126,7 +126,7 @@ namespace TicTacToe
         /// Check the grid to find if there's a winner yet
         /// </summary>
         /// <returns>0 if no winner yet, 1 if player1 wins, 2 if player2 wins, 3 if it's a tie</returns>
-        private static int CheckWinner(int[,] grid)
+        public static int CheckWinner(int[,] grid)
         {
             var isGridFilled = true;
             var checkStartIndex = GridSize - 3;
