@@ -25,6 +25,7 @@ namespace TicTacToe
         private int[,] _grid = new int[GridSize, GridSize];
 
         private int _currentPlayerTurn = 1;
+        private bool _isGameEnded;
 
         // Symbols of each player
         private const string Player1Symbol = "X";
@@ -47,6 +48,8 @@ namespace TicTacToe
         /// <exception cref="InvalidOperationException"></exception>
         private void OnGridButtonClicked(object sender, RoutedEventArgs e)
         {
+            if (_isGameEnded) return;
+
             var button = (Button)sender;
             var tag = button.Tag.ToString() ?? throw new InvalidOperationException("Button must contain a tag");
             int x = int.Parse(tag[0].ToString());
@@ -66,7 +69,25 @@ namespace TicTacToe
             button.Content = _currentPlayerTurn == 1 ? Player1Symbol : Player2Symbol;
             button.Foreground = _currentPlayerTurn == 1 ? Player1Color : Player2Color;
 
-            SwitchTurn();
+            var winner = CheckWinner();
+            // If no winner yet then switch turn
+            if (winner == 0) SwitchTurn();
+            // Else end the game
+            else
+            {
+                _isGameEnded = true;
+                UpdateWinnerLabel(winner);
+                // TODO: Add button to restart game
+            }
+        }
+
+        /// <summary>
+        /// Check the grid to find if there's a winner yet
+        /// </summary>
+        /// <returns>0 if no winner yet, 1 if player1 wins, 2 if player2 wins, 3 if it's a tie</returns>
+        private int CheckWinner()
+        {
+            return 0;
         }
 
         /// <summary>
@@ -88,6 +109,31 @@ namespace TicTacToe
             var button = MessageBoxButton.OK;
             var icon = MessageBoxImage.Error;
             MessageBox.Show(text, caption, button, icon, MessageBoxResult.Yes);
+        }
+
+        /// <summary>
+        /// Update text to show who won the game
+        /// </summary>
+        /// <param name="winner">1 if player1 wins, 2 if player2 wins, 3 if it's a tie</param>
+        private void UpdateWinnerLabel(int winner)
+        {
+            switch (winner)
+            {
+                case 1:
+                    winnerLabel.Content = "Player 1 wins!";
+                    winnerLabel.Foreground = Player1Color;
+                    break;
+
+                case 2:
+                    winnerLabel.Content = "Player 2 wins!";
+                    winnerLabel.Foreground = Player2Color;
+                    break;
+
+                case 3:
+                    winnerLabel.Content = "It's a tie!";
+                    break;
+            }
+            winnerLabel.Visibility = Visibility.Visible;
         }
     }
 }
